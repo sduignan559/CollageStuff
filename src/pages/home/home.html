@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <! -- allows user to enter settings bage via NAV bar  -->
+      G00398373
+      <button (click)="openSettings()">
+        <ion-icon name="settings" slot="end" size="large"></ion-icon>
+      </button>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <! -- generates random quotes from the quote api  -->
+    <ion-card-content>  
+      <ion-card-title>
+        Quote from {{author}} about:
+      </ion-card-title>
+        <ul>
+          <li *ngFor="let theme of themes">
+            <p>{{theme}}</p>
+          </li>
+        </ul>
+      <h3>{{content}}</h3>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <! -- if the success flag is true then the below code runs which gets the flag
+    image and the country from the sports data api  -->
+      <ion-card-title *ngIf="success != false">
+        Country ID {{countryID}} is {{countryName}}
+        <ion-item>
+        <ion-thumbnail slot="start">
+       <img src={{myFlagURL}} alt="flag of {{countryName}}">
+      </ion-thumbnail>
+      </ion-item>
+      </ion-card-title>
+
+      <! -- if the success flag is false the below code 
+      displays the error message to the user  -->
+      <ion-card-title *ngIf="success == false">
+        {{errorMessageDisplayed}}
+      </ion-card-title>
+    </ion-card-content>
+    </ion-card>
+
+
+    <! -- if the success flag is true then the below code runs gets the 
+    api information from the settings page for the user  -->
+    <ion-card>
+    <ion-card-content  *ngIf= "success != false">
+      <table border="1">
+        <tr>
+          <th width="25%">First Name</th>
+          <th width="25%">Last Name</th>
+          <th width="10%">Age</th>
+          <th width="10%">Height</th>
+        </tr>
+        <tr *ngFor="let f of footballerInfo">
+          <td>{{f.firstname}}</td>
+          <td>{{f.lastname}}</td>
+          <td>{{f.age}}</td>
+          <td>{{f.height}}</td>
+        </tr>
+      </table>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
