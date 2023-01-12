@@ -1,1 +1,1 @@
-# CollageStuff
+# CollegeStuff
